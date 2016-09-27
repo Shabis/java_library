@@ -42,7 +42,8 @@ public class BookTest {
 
   @Test
   public void getId_instatiatesCorrectlyWithId_true() {
-    assertEquals("Id", testBook.getId());
+    testBook.save();
+    assertTrue(testBook.getId() > 0);
   }
 
   @Test
@@ -53,6 +54,32 @@ public class BookTest {
   @Test
   public void getStock_instatiatesCorrectlyWithStock_true() {
     assertEquals(3, testBook.getStock());
+  }
+
+  @Test
+  public void depleteStock_depletesStock_2() {
+    assertEquals(2, testBook.depleteStock());
+  }
+
+  @Test
+  public void all_checkIfBookIsContainedInInstance_true() {
+    testBook.save();
+    nextBook.save();
+    assertTrue(Book.all().get(0).equals(testBook));
+    assertTrue(Book.all().get(1).equals(nextBook));
+  }
+
+  @Test
+  public void save_assignsIDToObject() {
+    testBook.save();
+    Book secondBook = Book.all().get(0);
+    assertEquals(testBook.getId(), secondBook.getId());
+  }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    testBook.save();
+    assertTrue(Book.all().get(0).equals(testBook));
   }
 
 

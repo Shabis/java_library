@@ -65,6 +65,8 @@ public class PatronTest {
     assertTrue(testPatron.getBooks().containsAll(Arrays.asList(books)));
   }
 
+  //WRITE TEST FOR GET BOOKS OUT
+
   @Test
   public void find_returnsPatronWithSameId_nextPatron() {
     testPatron.save();

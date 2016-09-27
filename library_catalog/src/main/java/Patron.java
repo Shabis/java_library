@@ -40,6 +40,10 @@ public class Patron {
     return id;
   }
 
+  public int getBooksOut() {
+    return booksOut;
+  }
+
   public static List<Patron> all() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT id, name FROM patrons";
@@ -61,8 +65,8 @@ public class Patron {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM patrons where id = :id";
       Patron patron = con.createQuery(sql)
-                           .addParameter("id", id)
-                           .executeAndFetchFirst(Patron.class);
+                         .addParameter("id", id)
+                         .executeAndFetchFirst(Patron.class);
       return patron;
     }
   }
@@ -71,16 +75,16 @@ public class Patron {
     try(Connection con = DB.sql2o.open()) {
     String sql = "UPDATE patrons SET email = :email, phone = :phone WHERE id = :id";
     con.createQuery(sql)
-      .addParameter("email", email)
-      .addParameter("phone", phone)
-      .addParameter("id", id)
-      .executeUpdate();
+       .addParameter("email", email)
+       .addParameter("phone", phone)
+       .addParameter("id", id)
+       .executeUpdate();
     }
   }
 
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "DELETE FROM patrons WHERE id = :id;";
+      String sql = "DELETE FROM patrons WHERE id = :id";
       con.createQuery(sql)
          .addParameter("id", id)
          .executeUpdate();
