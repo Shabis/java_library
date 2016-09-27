@@ -13,7 +13,6 @@ public class Patron {
   private int id;
   private int booksOut;
 
-
   public static final int MAX_CHECKOUT = 4;
   public static final int MIN_CHECKOUT = 0;
 

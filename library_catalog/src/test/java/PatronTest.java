@@ -1,5 +1,8 @@
 import org.sql2o.*;
 import org.junit.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
 import static org.junit.Assert.*;
 import java.time.LocalDateTime;
 
@@ -71,8 +74,8 @@ public class PatronTest {
 
   @Test
   public void update_returnUpdatedPatronInformation_true() {
-    Patron secondPatron = new Patron("Andre@gmail", "234-523-2352");
-    secondPatron.save()
+    Patron secondPatron = new Patron("Andre", "Andre@gmail", "234-523-2352");
+    secondPatron.save();
     secondPatron.update("jackc@gmail", "342-928-1384");
     assertEquals("jackc@gmail", Patron.find(secondPatron.getId()).getEmail());
     assertEquals("342-928-1384", Patron.find(secondPatron.getId()).getPhone());
